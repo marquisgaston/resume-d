@@ -1,0 +1,81 @@
+.homepage {
+    
+    
+    .hometabs-wrapper {
+        
+
+        .tab-content {
+            
+            .searchTab {
+                
+                
+                .content-wrapper {
+
+                    .carousel-text {
+                        font-size: 2em;
+
+                        @media only screen and (max-width: 421px){
+                            font-size: 1.4em;
+                        }
+                    }
+
+                    .main-title {
+                        font-size: 4em;
+
+                        @media only screen and (max-width: 421px){
+                            margin-top: 1em;
+                            font-size: 1.7em;
+                        }
+                    }
+                    
+                    .quick-search-wrapper {
+                        margin: 1em 0;
+                        width: 48em;
+
+                        @media only screen and (max-width: 421px){
+                            margin-top: 1.8em;
+                        }
+
+                        .quick-links {
+                            display: grid;
+                            max-height: 70%;
+                            grid-template-columns: 1fr 1fr 1fr 1fr;
+                            text-decoration: none;
+
+                            @media only screen and (max-width: 421px){
+                                margin: 0 3em;
+
+                                .quick-link {
+                                    h5 {
+                                        font-size: 1.2em;
+                                        background-color: blue;
+                                    }
+                                }
+                            }
+                            
+                            a:link {
+                                color: white;
+                            }
+
+                            a:visited {                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                                color: white                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
+                            }                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                                                    
+                            @media only screen and (max-width: 770px){
+                                grid-template-columns: 1fr 1fr 1fr;
+                            }
+                           
+                            @media only screen and (max-width: 421px){
+                                grid-template-columns: 1fr 1fr;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .search-wrapper {
+        margin: 0 1em;
+    }
+}

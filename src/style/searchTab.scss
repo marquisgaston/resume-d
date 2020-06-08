@@ -1,0 +1,33 @@
+.searchTab {
+
+    .content-wrapper {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        color: white;
+
+    }
+
+    .carousel-indicators {
+        display: none;
+    }
+
+    .quick-search {
+        background-color: $bg-color;
+        border-radius: 6px;
+        padding: 1em .5em;
+        display: grid;
+        grid-gap: .5em;
+
+        a {
+            text-decoration: none;
+            text-decoration: bold;
+            color: white;
+        }
+
+        .quick-search-link {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}

@@ -1,0 +1,171 @@
+.search-page {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .search-term-div {
+
+    }
+
+    .page-buttons {
+        display: flex;
+        justify-content: center;
+        width: 60vw;
+
+        .page-button {
+            min-width: 3.4em;
+            color: white;
+            background-color: $bg-color;
+            border-radius: 10px;
+        }
+
+        .pagination {
+            display: flex;
+            min-width: 40vw;
+            justify-content: center;
+
+            .page-link-wrapper {
+                margin: 0 .2em;
+
+                .page-link {
+                    color: white;
+                    background-color: $bg-color;
+                    border-color: $bg-color;
+
+                }
+            }
+        }
+    }
+
+    .search-results {
+        color: black;
+        display: grid;        
+        grid-gap: 1em;
+        margin-top: 1em;
+        .link {
+            max-width: 90vw;
+            
+            .card {
+                display: flex;
+                flex-direction: row;
+                max-width: 90vw;
+                width: 40em;
+    
+                @media only screen and (max-width: 411px){
+                    flex-direction: column;
+                    justify-self: center;
+                    align-items: center;
+                }
+    
+                img {
+                    width: 13em;
+                    max-width: 13em;
+                    margin-right: .5em;
+    
+                    @media only screen and (max-width: 1024px){
+                        width: 10em;
+                        max-width: 10em;
+                    }  
+    
+                    @media only screen and (max-width: 411px){
+                        width: 90vw;
+                        max-width: 90vw;
+                        margin-right: 0em;
+                        margin-bottom: .4em;
+                    }                     
+                     
+                }
+    
+                .card-content {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: .5em;
+                }
+    
+                .title {
+                    display: flex;
+                    justify-self: center;
+                    align-items: center;
+    
+                    i {
+                        margin-left: 1em;
+                    }
+                }
+    
+                .sub-title, .url {
+                    font-size: .8em;
+                }
+                
+            }
+        }
+
+        .project {
+            max-width: 90vw;
+            
+            .card {
+                display: flex;
+                flex-direction: row;
+                max-width: 90vw;
+                width: 40em;
+    
+                @media only screen and (max-width: 411px){
+                    flex-direction: column;
+                    justify-self: center;
+                    align-items: center;
+                }
+    
+                img {
+                    width: 13em;
+                    max-width: 13em;
+                    margin-right: .5em;
+    
+                    @media only screen and (max-width: 1024px){
+                        width: 10em;
+                        max-width: 10em;
+                    }  
+    
+                    @media only screen and (max-width: 411px){
+                        width: 90vw;
+                        max-width: 90vw;
+                        margin-right: 0em;
+                        margin-bottom: .4em;
+                    }                     
+                     
+                }
+    
+                .card-content {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: .5em;
+                }
+    
+                .title {
+                    display: flex;
+                    justify-self: center;
+                    align-items: center;
+    
+                    i {
+                        margin-left: 1em;
+                    }
+                }
+    
+                .sub-title, .url {
+                    font-size: .8em;
+                }
+                
+            }
+        }
+    }
+
+    .page-indicator {
+        margin-top: 1em;
+    }
+}
