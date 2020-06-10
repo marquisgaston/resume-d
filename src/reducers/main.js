@@ -1,12 +1,12 @@
 import {
     SET_CURRENT_PAGE,
-    SET_SEARCH_TERM
+    SET_SEARCH_TERM,
+    SET_TABS_MARGIN
 } from '../actions/types';
 
 const INITIAL_STATE = {
     currentPage: null,
-    searchTerm: null,
-    searchYoutube: true
+    searchTerm: null
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -20,6 +20,11 @@ export default function (state = INITIAL_STATE, action) {
             return {
                 ...state,
                 searchTerm: action.payload
+            }
+        case SET_TABS_MARGIN:
+            return {
+                ...state,
+                tabsMargin: action.payload
             }
         default: return state
     }

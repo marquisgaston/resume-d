@@ -1,9 +1,11 @@
 import {
     setCurrentPage,
-    setSearchTerm
+    setSearchTerm,
+    setTabsMargin
 } from './main';
 
 export {
     setCurrentPage,
-    setSearchTerm
+    setSearchTerm,
+    setTabsMargin
 }

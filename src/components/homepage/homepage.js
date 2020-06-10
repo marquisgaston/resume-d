@@ -13,14 +13,16 @@ class Homepage extends Component {
     mainNavMargin = null
 
     componentDidMount() {
+        this.props.setTabsMargin();
         this.props.setCurrentPage("homepage");
-        this.mainNavMargin = document.getElementById("mainNav").clientHeight
+        this.mainNavMargin = document.getElementById("mainNav").clientHeight;
     }
 
-    render() { 
+    render() {
+        
         return ( 
             <div className="homepage" style={{marginTop: `${this.mainNavMargin}px`, zIndex: "-1"}}>
-                <Hometabs/>
+                <Hometabs tabsMargin={this.props.main.tabsMargin}/>
                 {/* <Hometabs/>
                 <OtherTabs/> */}
             </div>

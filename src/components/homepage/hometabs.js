@@ -46,9 +46,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Hometabs() {
+export default function Hometabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  console.log("props", props)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -72,10 +73,10 @@ export default function Hometabs() {
        </div>
       </TabPanel>
       <TabPanel value={value} index={0}>
-      <div className="tab-content">
+      <div className="tab-content" style={{top: `${props.tabsMargin}px`}}>
           <SearchTab/>
         </div>
-       <div className="tab-bg">
+       <div className="tab-bg" style={{top: `${props.tabsMargin}px`}}>
          
        </div>
           </TabPanel>
