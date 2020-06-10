@@ -20,7 +20,8 @@ class SearchTab extends Component {
         });
     }
 
-    handleClick = () => {
+    handleClick = (event) => {
+        event.preventDefault();
         if (this.state.searchText !== null && this.state.searchText.length > 0){
             if (this.state.searchText.toLowerCase() === "resume") {
                 window.open('https://docs.google.com/document/d/1mWRqgDd30Er4ZvEvIrX7WlwzHiVGRfxAjRn5PNY99FY/edit');
@@ -232,7 +233,7 @@ class SearchTab extends Component {
                         </Carousel>
                 <form className="search-wrapper" onSubmit={this.handleClick} style={{display: "flex", justifyContent: "center", marginTop: ".7em"}}>
                 <FormControl name="searchText" value={this.state.searchText} onChange={this.handleChange} type="text" placeholder="Search" className="mr-sm-3" />
-                <Button className="search-button" variant="outline-success" style={{color: "white", borderColor: "white", backgroundColor: "#$main-blue"}} onClick={this.handleClick}>Search</Button>
+                <Button className="search-button" variant="outline-success" type="submit" style={{color: "white", borderColor: "white", backgroundColor: "#$main-blue"}}>Search</Button>
                 </form>
                 <div className="quick-search-wrapper">
                     {this.renderQuickSearch()}

@@ -20,7 +20,8 @@ class NavbarComponent extends Component {
           });
       }
 
-      handleClick = () => {
+      handleClick = (event) => {
+          event.preventDefault();
           if (this.state.searchText !== null && this.state.searchText.length > 0){
               this.props.setSearchTerm(this.state.searchText);
               history.push('/search')
