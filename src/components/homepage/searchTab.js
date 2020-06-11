@@ -192,7 +192,7 @@ class SearchTab extends Component {
             )
         } else {
             return (
-                <div className="quick-links" style={{marginTop: "5em"}}>
+                <div className="quick-links">
                     <a className="quick-link-wrapper" href="https://www.github.com/marquisgaston">
                         <div className="quick-link" >
                         <i class="fab fa-github"></i>
@@ -232,7 +232,7 @@ class SearchTab extends Component {
                             })}
                         </Carousel>
                 <form className="search-wrapper" onSubmit={this.handleClick} style={{display: "flex", justifyContent: "center", marginTop: ".7em"}}>
-                <FormControl name="searchText" value={this.state.searchText} onChange={this.handleChange} type="text" placeholder="Search" className="mr-sm-3" />
+                <FormControl name="searchText" value={this.state.searchText} onChange={this.handleChange} type="text" placeholder="Search" />
                 <Button className="search-button" variant="outline-success" type="submit" style={{color: "white", borderColor: "white", backgroundColor: "#$main-blue"}}>Search</Button>
                 </form>
                 <div className="quick-search-wrapper">

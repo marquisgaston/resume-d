@@ -19,6 +19,7 @@ class SearchPage extends Component {
 
     componentDidMount() {
         this.props.setCurrentPage("search");
+        this.props.setSearchTerm("all");
     }
 
     pullYoutubeItems = () => {
@@ -226,6 +227,7 @@ class SearchPage extends Component {
                 <div className="page-buttons">
 
                     <div className = "page-button">
+                    <button className="page-button" onClick={this.pageUp}>NEXT</button>
                         {currentResultPage < (pageLimit - 1) ? <button className="page-button" onClick={this.pageUp}>NEXT</button> : null}
                     </div>
                         <SearchPagination list={fullResults} itemsPerPage={this.state.itemsPerPage} currentResultPage={currentResultPage} searchPageLink={this.searchPageLink}/>

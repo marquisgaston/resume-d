@@ -22,7 +22,7 @@ class Homepage extends Component {
         
         return ( 
             <div className="homepage" style={{marginTop: `${this.mainNavMargin}px`, zIndex: "-1"}}>
-                <Hometabs tabsMargin={this.props.main.tabsMargin}/>
+                <Hometabs tabsMargin={60}/>
                 {/* <Hometabs/>
                 <OtherTabs/> */}
             </div>
