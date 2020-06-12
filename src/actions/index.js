@@ -1,11 +1,13 @@
 import {
     setCurrentPage,
     setSearchTerm,
-    setTabsMargin
+    setTabsMargin,
+    pullYoutubeItems
 } from './main';
 
 export {
     setCurrentPage,
     setSearchTerm,
-    setTabsMargin
+    setTabsMargin,
+    pullYoutubeItems
 }

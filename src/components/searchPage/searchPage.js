@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-// import axios from 'axios';
+import axios from 'axios';
 
 import SearchPagination from './searchPagination';
 import SearchToggle from './searchToggle';
@@ -14,20 +14,22 @@ class SearchPage extends Component {
     state = {
         itemsPerPage: 10,
         pageStart: 0,
-        listPageStart: 0
+        listPageStart: 0,
+        youtubeList: []
     }
 
     componentDidMount() {
         this.props.setCurrentPage("search");
         this.props.setSearchTerm("all");
-    }
-
-    pullYoutubeItems = () => {
-        // axios
-        // .get(`https://www.googleapis.com/youtube/v3/search?q=${this.props.main.searchTerm}&part=snippet&maxResults=100&key=${process.env.REACT_APP_YT_API_KEY}`)
-        //     .then(response => {
-        //         console.log("response", response.data.items);
-        //     })
+        const youtubeList = [];
+        axios
+            .get(`https://jsonplaceholder.typicode.com/posts`)
+                .then(res => {
+                    res.data.map(item => youtubeList.push(item))
+                    this.setState({
+                        youtubeList: youtubeList
+                    })
+            })
     }
 
     pageUp = () => {
@@ -50,11 +52,10 @@ class SearchPage extends Component {
 
     
     render () {
-        this.pullYoutubeItems();
         var i = 0;
-        const resultsList = [];
+        const list = [];
         while ( i < 110) {
-            resultsList.push(
+            list.push(
                 "number " + i
             )
             i++;
@@ -80,71 +81,19 @@ class SearchPage extends Component {
                         } else {
                             newList2.push(item)
                         }
-                        return null
-                    }) 
-                } else
-                if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                } else
-                if (this.props.main.searchTerm === item.title){
-                    if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                    } else {
-                        newList.push(item)
-                    }
-                } 
-                else 
-                if (this.props.main.searchTerm.toLowerCase() === item.title.toLowerCase()){
-                    if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                    } else {
-                        newList.push(item)
-                    }
-                } 
-                else 
-                if (item.title.toLowerCase().includes(this.props.main.searchTerm.toLowerCase())){
-                    if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                    } else {
-                        newList.push(item)
-                    }
-                }
-                else
-                {
-                    item.keyWords.filter(keyWord => {
-                         if (item.title === this.props.main.searchTerm && this.props.main.searchTerm === keyWord){
-                            if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                            } else {
-                                newList2.push(item)
-                            }
-                        } 
-                        if (item.title.includes(this.props.main.searchTerm) && this.props.main.searchTerm === keyWord){
-                            if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                            } else {
-                                newList2.push(item)
-                            }
-                        }
-                        if (this.props.main.searchTerm === keyWord){
-                            if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                            } else {
-                                newList2.push(item)
-                            }
-                        }
-                        if (item.title.includes(keyWord)){
-                            if (newList.includes(item) | newList2.includes(item) | newList3.includes(item) | newList4.includes(item) | newList5.includes(item)){
-                            } else {
-                                newList3.push(item)
-                            }
-                        }
-
                         return newList
                     })
-                }
+                } 
         
-            return null
+            return item
         })
         
-        const resumeResults = newList.concat(newList2, newList3, newList4, newList5);
-        const fullResults = resumeResults;
+        const resumeResults = newList.concat(newList2, newList3, newList4, newList5, this.state.youtubeList);
+        const fullResults = resumeResults.concat(this.state.youtubeList);
         const listToRender = fullResults.slice(this.state.pageStart, this.state.pageStart + this.state.itemsPerPage);
         const currentResultPage = Math.floor(this.state.pageStart / this.state.itemsPerPage);
         const pageLimit = Math.floor(fullResults.length / this.state.itemsPerPage);
+        console.log("log", listToRender)
 
         const renderResults = (list) => {
             if (this.props.main.searchTerm === null){
@@ -159,60 +108,42 @@ class SearchPage extends Component {
             } else 
             if (this.props.main.searchTerm.toLowerCase() === "all") {
                 return (
-                    listToRender.map(item => {
-                        if (item.title) {
+                    list.map(item => {
+                        if (item.url){
                             return (
-                                <a key={item.title + item.class} className={item.class} href={item.url} style={{color: "black", textDecoration: "none"}}>
-                                    <Card >
-                                        {item.imageUrl ? <img src={item.imageUrl} alt="no show" /> : null }
-                                        <div className="card-content">
-                                        <div className="title">
-                                            <h3>{item.title}</h3>{item.icon ? <i class={item.icon}></i> : null}
+                                <a href={item.url}>
+                                    <div className="search-result">
+                                        <div className="result-img">
+                                            {item.imageUrl ? <img src={item.imageUrl}></img> : null}
                                         </div>
-                                        {item.subTitle ? <div className="sub-title">
-                                            {item.subTitle}
-                                        </div>: null}
-                                        {item.url ? <div className="url">
-                                            {item.url}
-                                        </div> : 
-                                        <div className="url">
-                                            {item.localUrl}
-                                        </div>}
+                                        <div className="result-text">
+                                            <div>
+                                                {item.title}
+                                            </div>
+                                            {item.subTitle ? <div>
+                                                {item.subTitle}
+                                            </div> : null}
                                         </div>
-                                    </Card>
+                                    </div>
                                 </a>
                             )
-                        }
-                        return null
-                    })
-                )
-            } else {
-                return (
-                    listToRender.map(item => {
-                        if (item.title) {
+                        } else {
                             return (
-                                <a key={item.title + item.class} className={item.class} href={item.url} style={{color: "black", textDecoration: "none"}}>
-                                    <Card >
-                                        {item.imageUrl ? <img src={item.imageUrl} alt="no show" /> : null }
-                                        <div className="card-content">
-                                        <div className="title">
-                                            <h3>{item.title}</h3>{item.icon ? <i class={item.icon}></i> : null}
+                                <div className="search-result">
+                                    <div className="result-img">
+                                        {item.imageUrl ? <img src={item.imageUrl}></img> : null}
+                                    </div>
+                                    <div className="result-text">
+                                        <div>
+                                            {item.title}
                                         </div>
-                                        {item.subTitle ? <div className="sub-title">
+                                        {item.subTitle ? <div>
                                             {item.subTitle}
-                                        </div>: null}
-                                        {item.url ? <div className="url">
-                                            {item.url}
-                                        </div> : 
-                                        <div className="url">
-                                            {item.localUrl}
-                                        </div>}
-                                        </div>
-                                    </Card>
-                                </a>
+                                        </div> : null}
+                                    </div>
+                                </div>
                             )
                         }
-                        return null
                     })
                 )
             }
@@ -227,7 +158,6 @@ class SearchPage extends Component {
                 <div className="page-buttons">
 
                     <div className = "page-button">
-                    <button className="page-button" onClick={this.pageUp}>NEXT</button>
                         {currentResultPage < (pageLimit - 1) ? <button className="page-button" onClick={this.pageUp}>NEXT</button> : null}
                     </div>
                         <SearchPagination list={fullResults} itemsPerPage={this.state.itemsPerPage} currentResultPage={currentResultPage} searchPageLink={this.searchPageLink}/>
@@ -235,7 +165,7 @@ class SearchPage extends Component {
                         {currentResultPage > 0 ? <button className="page-button" onClick={this.pageDown}>PREV</button> : null}
                     </div>
                 </div>
-                <div className="search-results">
+                <div className="search-results-wrapper">
                     {renderResults(listToRender)}
                 </div>
                 <div className = "page-indicator">

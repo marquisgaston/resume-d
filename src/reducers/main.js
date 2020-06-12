@@ -1,12 +1,14 @@
 import {
     SET_CURRENT_PAGE,
     SET_SEARCH_TERM,
-    SET_TABS_MARGIN
+    SET_TABS_MARGIN,
+    PULL_YOUTUBE_ITEMS
 } from '../actions/types';
 
 const INITIAL_STATE = {
     currentPage: null,
-    searchTerm: null
+    searchTerm: null,
+    youtubeItems: []
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -25,6 +27,11 @@ export default function (state = INITIAL_STATE, action) {
             return {
                 ...state,
                 tabsMargin: action.payload
+            }
+        case PULL_YOUTUBE_ITEMS:
+            return {
+                ...state,
+                youtubeItems: action.payload
             }
         default: return state
     }

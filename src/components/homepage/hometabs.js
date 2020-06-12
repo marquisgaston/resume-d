@@ -49,7 +49,6 @@ const useStyles = makeStyles(theme => ({
 export default function Hometabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  console.log("props", props)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
