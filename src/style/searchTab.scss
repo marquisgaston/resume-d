@@ -16,6 +16,7 @@
         background-color: $bg-color;
         border-radius: 6px;
         padding: 1em .5em;
+        margin: 1em 0;
         display: grid;
         grid-gap: .5em;
 
@@ -23,11 +24,18 @@
             text-decoration: none;
             text-decoration: bold;
             color: white;
+
         }
 
         .quick-search-link {
             display: flex;
             justify-content: space-around;
+
+            @media only screen and (max-width: 430px){
+                display: grid;
+                grid-template-columns: 1fr;
+                max-width: 96vw;
+            }
         }
     }
 }

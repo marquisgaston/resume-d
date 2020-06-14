@@ -2,12 +2,17 @@ import {
     setCurrentPage,
     setSearchTerm,
     setTabsMargin,
-    pullYoutubeItems
+    runFunction
 } from './main';
+
+import {
+    pullYoutubeItems
+} from './search';
 
 export {
     setCurrentPage,
     setSearchTerm,
     setTabsMargin,
-    pullYoutubeItems
+    pullYoutubeItems,
+    runFunction
 }

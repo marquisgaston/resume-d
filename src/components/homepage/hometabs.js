@@ -75,7 +75,7 @@ export default function Hometabs(props) {
       <div className="tab-content" style={{top: `${props.tabsMargin}px`}}>
           <SearchTab/>
         </div>
-       <div className="tab-bg" style={{top: `${props.tabsMargin}px`}}>
+       <div className="tab-bg" style={{top: `${props.tabsMargin -12}px`}}>
          
        </div>
           </TabPanel>

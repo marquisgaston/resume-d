@@ -1,9 +1,9 @@
-import axios from 'axios';
 import {
     SET_CURRENT_PAGE,
     SET_SEARCH_TERM,
     SET_TABS_MARGIN,
-    PULL_YOUTUBE_ITEMS
+    PULL_YOUTUBE_ITEMS,
+    RUN_FUNCTION
 } from './types';
 
 export function setCurrentPage (page){
@@ -28,19 +28,10 @@ export function setTabsMargin (){
     })
 }
 
-export function pullYoutubeItems () {
-    const youtubeList = [];
-        axios
-            .get(`https://jsonplaceholder.typicode.com/posts`)
-                .then(res => {
-                    console.log("res", res.data)
-                    res.data.map(item => youtubeList.push(item))
-                    console.log('list', youtubeList)
-                    
-            })
-        
+export function runFunction (runThis) {
+
     return ({
-        type: PULL_YOUTUBE_ITEMS,
-        payload: youtubeList
+        type: RUN_FUNCTION,
+        payload: runThis
     })
 }
