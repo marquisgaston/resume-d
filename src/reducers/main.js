@@ -6,7 +6,7 @@ import {
 
 const INITIAL_STATE = {
     currentPage: null,
-    searchTerm: ''
+    searchTerm: null
 }
 
 export default function (state = INITIAL_STATE, action) {

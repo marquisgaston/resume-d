@@ -2,7 +2,6 @@ import {
     SET_CURRENT_PAGE,
     SET_SEARCH_TERM,
     SET_TABS_MARGIN,
-    PULL_YOUTUBE_ITEMS,
     RUN_FUNCTION
 } from './types';
 

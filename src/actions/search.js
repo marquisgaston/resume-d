@@ -2,8 +2,6 @@ import {
     PULL_YOUTUBE_ITEMS
 } from './types';
 
-import axios from 'axios';
-
 export function pullYoutubeItems(searchTerm){
 
 

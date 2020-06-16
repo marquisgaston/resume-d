@@ -1,32 +1,52 @@
 import React, { Component } from 'react';
 
 class SearchPagination extends Component {
-    state = {  }
+    state = { 
+        currentPaginationPageStart: 0  
+     }
+
+    componentDidMount(){
+
+    }
+
     render() { 
-        var currentPaginationNumber = Math.floor((this.props.currentResultPage)/ 10);      
+        const currentPaginationNumber = this.props.currentPaginationNumber;
         var i = 0;
-        var end = Math.ceil(this.props.list.length / this.props.itemsPerPage)
-        var pagesList = [];
-        
-        while ( i < end ){            
-          i++;
-          pagesList.push(i);
-        }
+        const end = Math.ceil(this.props.list.length / this.props.itemsPerPage);
+        const pagesList = [];
 
-        const currentPaginationList = pagesList.slice((currentPaginationNumber * 10), (currentPaginationNumber * 10) + 10 );
+        while ( i < end){            
+            i++;
+            pagesList.push(i);
+          }
+        const pagesToRender = pagesList.slice(currentPaginationNumber * 10, currentPaginationNumber * 10 + 10)
 
-        return ( 
-            <div className="pagination">
-                {currentPaginationList.map(item => {
-                        return (
-                        <div className="page-link-wrapper">
-                            <div className = "page-link" onClick={() => {this.props.searchPageLink(item)}}>
-                                {item}
-                            </div>
+        const renderPagination = () => {
+            if ( this.props.list[0] === "no search term was entered") {
+                return null
+            } else 
+            if (pagesList.length > 1){
+                return (
+                    <div className="search-pagination" style={{border: "1px solid white"}}>
+                        <div style={{display: "flex", justifyContent: "space-between"}}>
+                            {pagesToRender.map(item => {
+                                return (
+                                    <div key={item.index}>
+                                        <div onClick={() => {this.props.searchPageLink(item)}}>{item}</div>
+                                    </div>
+                                )
+                            })}
                         </div>
-                    )
-                })}
-            </div>
+                    </div>
+                )
+            }
+            else {
+                return null
+            }
+        }
+        
+        return ( 
+            renderPagination()
          );
     }
 }

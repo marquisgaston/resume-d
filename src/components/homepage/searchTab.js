@@ -3,6 +3,7 @@ import { FormControl, Button, Carousel } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import axios from 'axios';
 import history from '../../history';
 
 class SearchTab extends Component {
@@ -11,8 +12,12 @@ class SearchTab extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
     state = { 
-        searchText: ""
+        searchText: "linkedin"
      }
+
+    componentDidMount(){
+        
+    }
 
     handleChange(event) {
         this.setState ({
@@ -27,7 +32,13 @@ class SearchTab extends Component {
                 window.open('https://docs.google.com/document/d/1mWRqgDd30Er4ZvEvIrX7WlwzHiVGRfxAjRn5PNY99FY/edit');
             } else {
                 this.props.setSearchTerm(this.state.searchText);
-                history.push(`/search`)
+                axios
+                    .get(`https://www.googleapis.com/youtube/v3/search?q=${this.state.searchText}&part=snippet&maxResults=50&key=${process.env.REACT_APP_YT_API_KEY}`)
+                        .then(res => {
+                            this.props.pullYoutubeItems(res.data.items)
+                            console.log("res", res.data.items)
+                        })
+                    history.push('/search')
             }
         } else {
             return
@@ -62,13 +73,14 @@ class SearchTab extends Component {
                 icon: "fas fa-keyboard"
             },
         ]
-
+        var counter = 0;
         return (
             quickLinks.map(item => {
+                counter++
                 return (
-                    <a className="quick-link-wrapper" href={item.url}>
+                    <a key={`${counter}`} className="quick-link-wrapper" href={item.url}>
                         <div className="quick-link" >
-                        <i class={item.icon}></i>
+                        <i className={item.icon}></i>
                         <h5>{item.title}</h5>
                         </div>
                     </a>
@@ -139,7 +151,7 @@ class SearchTab extends Component {
                 <div className="quick-search">
                     {newList.map(item => {
                         return (
-                            <div className="quick-search-item">
+                            <div key={`${item.index}`} className="quick-search-item">
                                 <a className="quick-search-link" href={item.url ? item.url : item.localUrl}>
                                 <div className="title">
                                     {item.title}
@@ -173,7 +185,7 @@ class SearchTab extends Component {
                     })}
                     {newList3.map(item => {
                         return (
-                            <div className="quick-search-item">
+                            <div key={`${item}${item.index}`} className="quick-search-item">
                                 <a className="quick-search-link" href={`${item.url}`}>
                                 <div className="title">
                                     {item.title}
@@ -195,13 +207,13 @@ class SearchTab extends Component {
                 <div className="quick-links">
                     <a className="quick-link-wrapper" href="https://www.github.com/marquisgaston">
                         <div className="quick-link" >
-                        <i class="fab fa-github"></i>
+                        <i className="fab fa-github"></i>
                         <h5>My Github</h5>
                         </div>
                     </a>
                     <a className="quick-link-wrapper" href="https://www.linkedin.com/in/marquisgaston">
                         <div className="quick-link" >
-                        <i class="fab fa-linkedin"></i>
+                        <i className="fab fa-linkedin"></i>
                         <h5>My LinkedIn</h5>
                         </div>
                     </a>
@@ -214,7 +226,7 @@ class SearchTab extends Component {
     render() {
         const list = ["Github", "Linkedin", "Bottega", "Netlify", "React", "NodeJS", "Python", "Javascript"]
         
-        
+        var counter = 0;
         return ( 
            <div className="searchTab">
                 <div className="content-wrapper">            
@@ -224,8 +236,9 @@ class SearchTab extends Component {
                     <div className="carousel-text" style={{margin: ".5em"}}>Try typing a keyword to see what I can do for you!</div>
                         <Carousel className="skill-carousel" style={{margin: ".5em 0"}}>
                         {list.map(item => {
+                            counter++
                             return (
-                                <Carousel.Item key={item} style={{fontSize: "1.4em"}}>
+                                <Carousel.Item key={`${counter}`} style={{fontSize: "1.4em"}}>
                                     {item}
                                 </Carousel.Item>
                                  )
