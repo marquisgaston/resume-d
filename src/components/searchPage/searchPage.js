@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -43,6 +42,7 @@ class SearchPage extends Component {
                 if(!fullResults.includes(item)){
                     fullResults.push(item);
                 }
+                return listToAddToResults
             })
         }
 
@@ -54,10 +54,11 @@ class SearchPage extends Component {
         if (this.props.main.searchTerm.toLowerCase() === "all"){
             this.props.resumeData.resumeItems.map(item => {
                 fullResults.push(item);
-                
+                return item                
             })
             this.props.search.youtubeItems.map(item => {
                 fullResults.push(item)
+                return item
             })
         } else {
             const list1 = this.props.resumeData.resumeItems.filter(item => 
@@ -72,7 +73,9 @@ class SearchPage extends Component {
                     if(keyword === this.props.main.searchTerm.toLowerCase()){
                         list3.push(item)
                     }
+                    return keyword
                 })
+                return item
             })
 
             addToFullResults(list1);
